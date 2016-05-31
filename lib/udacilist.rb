@@ -23,12 +23,26 @@ class UdaciList
     raise UdaciListErrors::IndexExceedsListSize if index - 1 > @items.length
   end
 
-  def all
-    puts "-" * @title.length
-    puts @title
-    puts "-" * @title.length
-    @items.each_with_index do |item, position|
+  def display_items(list=@items)
+    list.each_with_index do |item, position|
       puts "#{position + 1}) #{item.details}"
     end
+  end
+
+  def list_title(title=@title)
+    puts "-" * title.length
+    puts title
+    puts "-" * title.length
+  end
+
+  def all
+    list_title
+    display_items
+  end
+
+  def filter(type)
+    list_title("#{@title} - #{type.capitalize}s")
+    display_items(@items.select { |item| item.details.include?(type.capitalize) })
+      #.each_with_index { |item, index| puts "#{index + 1} #{item.details}" }
   end
 end
