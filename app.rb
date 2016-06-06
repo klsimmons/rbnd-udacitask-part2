@@ -17,9 +17,9 @@ list.add("todo", "Buy groceries", priority: "high")
 list.add("event", "Birthday Party", start_date: "2016-05-08")
 list.add("event", "Vacation", start_date: "2016-05-28", end_date: "2016-05-31")
 list.add("link", "https://github.com", site_name: "GitHub Homepage")
-#list.all
+list.all
 list.delete(3)
-#list.all
+list.all
 
 # SHOULD CREATE AN UNTITLED LIST AND ADD ITEMS TO IT
 # --------------------------------------------------
@@ -41,11 +41,12 @@ new_list.add("link", "http://ruby-doc.org")
 
 # DISPLAY UNTITLED LIST
 # ---------------------
-#new_list.all
+new_list.all
 
 # DEMO FILTER BY ITEM TYPE
 # ------------------------
 new_list.filter("todo")
 
 new_list.get(1).mark_complete
+new_list.get(3).change_priority("low")
 new_list.all

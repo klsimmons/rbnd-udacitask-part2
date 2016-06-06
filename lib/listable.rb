@@ -23,6 +23,10 @@ module Listable
     return value
   end
 
+  def change_priority(new_priority)
+    @priority = new_priority
+  end
+
   def format_type
     "#{@type}: "
   end
@@ -33,5 +37,9 @@ module Listable
 
   def mark_complete
     @complete = true
+  end
+
+  def format_complete
+    "Done" if complete?
   end
 end
