@@ -25,7 +25,11 @@ class UdaciList
 
   def display_items(list=@items)
     list.each_with_index do |item, position|
-      puts "#{position + 1}) #{item.details}"
+      if item.complete? == true
+        puts "#{position + 1}) #{item.details}".colorize(:green)
+      else
+        puts "#{position + 1}) #{item.details}"
+      end
     end
   end
 
@@ -36,13 +40,31 @@ class UdaciList
   end
 
   def all
-    list_title
-    display_items
+    puts table
   end
 
   def filter(type)
-    list_title("#{@title} - #{type.capitalize}s")
-    display_items(@items.select { |item| item.details.include?(type.capitalize) })
-      #.each_with_index { |item, index| puts "#{index + 1} #{item.details}" }
+    list_title = "#{@title} - #{type.capitalize}s"
+    filtered_list = Array.new
+    @items.each { |item| filtered_list << item if item.details.include?(type.capitalize) }
+    if filtered_list.empty?
+      raise UdaciListErrors::NoItemsExist
+    else
+      puts table(filtered_list, list_title)
+    end
+  end
+
+  def get(item_number)
+    @items[item_number - 1]
+  end
+
+  def table(list=@items, title=@title)
+    chart = Terminal::Table.new :title => title do |row|
+      list.each_with_index do |item, position|
+        row << item.details
+        row.add_separator
+      end
+      chart
+    end
   end
 end

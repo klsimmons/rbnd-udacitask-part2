@@ -7,6 +7,8 @@ class TodoItem
     @due = options[:due] ? Chronic.parse(options[:due]) : options[:due]
     @priority = options[:priority]
     check_priority if @priority != nil
+    @complete = false
+    @type = "Todo"
   end
 
   def check_priority
@@ -15,8 +17,7 @@ class TodoItem
   end
 
   def details
-    "Todo: " + format_description(@description) + "due: " +
-    format_date(due: @due) +
-    format_priority
+    details = [@type, @description, "Due: " +
+    format_date(due: @due), format_priority]
   end
 end

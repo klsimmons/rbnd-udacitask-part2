@@ -2,7 +2,7 @@
 # -------------------------------------------------------
 1. What is the gem of your choice and how did you use it?
 2. Describe the 2 features you added to the project.
-  a) Feature 1...
+  a) Completing Items: (marked green, progress bar)
   b) Feature 2...
 
 # REFLECTIONS

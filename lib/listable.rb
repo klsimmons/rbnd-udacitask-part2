@@ -5,9 +5,9 @@ module Listable
   end
 
   def format_date(options = {})
-    if options[:start_date] || options[:end_date]
+    if @type == "Event"
       dates = options[:start_date].strftime("%D") if options[:start_date]
-      dates << " -- " + options[:end_date].strftime("%D") if options[:end_date]
+      dates << " --\n " + options[:end_date].strftime("%D") if options[:end_date]
       dates = "N/A" if !dates
       return dates
     else
@@ -21,5 +21,17 @@ module Listable
     value = " ⇩".colorize(:green) if @priority == "low"
     value = "" if !@priority
     return value
+  end
+
+  def format_type
+    "#{@type}: "
+  end
+
+  def complete?
+    @complete
+  end
+
+  def mark_complete
+    @complete = true
   end
 end
