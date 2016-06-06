@@ -27,6 +27,10 @@ module Listable
     @priority = new_priority
   end
 
+  def item_type
+    @type
+  end
+
   def format_type
     "#{@type}: "
   end

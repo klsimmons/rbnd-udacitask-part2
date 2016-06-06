@@ -23,35 +23,20 @@ class UdaciList
     raise UdaciListErrors::IndexExceedsListSize if index - 1 > @items.length
   end
 
-  def display_items(list=@items)
-    list.each_with_index do |item, position|
-      if item.complete? == true
-        puts "#{position + 1}) #{item.details}".colorize(:green)
-      else
-        puts "#{position + 1}) #{item.details}"
-      end
-    end
-  end
-
-  def list_title(title=@title)
-    puts "-" * title.length
-    puts title
-    puts "-" * title.length
-  end
-
   def all
     puts table
   end
 
   def filter(type)
     list_title = "#{@title} - #{type.capitalize}s"
-    filtered_list = Array.new
-    @items.each { |item| filtered_list << item if item.details.include?(type.capitalize) }
-    if filtered_list.empty?
-      raise UdaciListErrors::NoItemsExist
-    else
-      puts table(filtered_list, list_title)
-    end
+    @filtered_list = Array.new
+    @items.each { |item| @filtered_list << item if item.item_type == type.capitalize }
+    check_filtered_list
+    puts table(@filtered_list, list_title)
+  end
+
+  def check_filtered_list
+    raise UdaciListErrors::NoItemsExist if @filtered_list.empty?
   end
 
   def get(item_number)
@@ -62,7 +47,7 @@ class UdaciList
     chart = Terminal::Table.new :title => title do |row|
       list.each_with_index do |item, position|
         row << item.details
-        row.add_separator
+        row.add_separator unless item == list.last
       end
       chart
     end

@@ -11,6 +11,6 @@ class EventItem
   end
 
   def details
-    details = [@type, @description, "Event Dates: " + format_date(start_date: @start_date, end_date: @end_date).to_s]
+    details = [@type, @description, "Event Dates: " + format_date(start_date: @start_date, end_date: @end_date).to_s, nil, nil]
   end
 end

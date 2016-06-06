@@ -1,13 +1,22 @@
 # What you added to Udacitask 2.0
 # -------------------------------------------------------
 1. What is the gem of your choice and how did you use it?
+I used the terminal-table gem to output the list as a table.
+
 2. Describe the 2 features you added to the project.
-  a) Completing Items: 
-  b) Feature 2...
+  a) Completing Items: I added an @complete variable to items and a  "mark_complete" method that puts "Done" next to items where @complete = true.
+  b) Change Priority: I added a "change_priority" method that simply changes the value of @priority.
 
 # REFLECTIONS
 # -------------------------------------------------------
 1. How long did you spend working on this project?
+I spent about a week working on this project on and off.
+
 2. What was the most rewarding challenge you conquered?
+Getting the table to format correctly. I had a lot of problems with older code (from before I started using the terminal-table gem) interfering with the newer code, and ferreting those out was a challenge.
+
 3. What two additional features did you build? Why?
+The ability to complete items and change their priority level because they both seemed like useful base functionality for this kind of program.
+
 4. Where do you still have room to grow?
+I think I could do better with noticing places where my code could be structured more cleanly.
